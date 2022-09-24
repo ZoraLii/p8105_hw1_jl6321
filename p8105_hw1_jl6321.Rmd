@@ -3,9 +3,34 @@ title: "p8105_hw1_jl6321.Rmd"
 output: github_document
 ---
 
+```{r setup, include=FALSE}
+library(tidyverse)
+```
+
 # Problem 1
 
 ```{r}
 data("penguins", package = "palmerpenguins")
 ```
 The variables in the penguins dataset include `r names(penguins)`. There are `r ncol(penguins)` columns and `r nrow(penguins)` rows in total. The mean flipper length is computed to be `r mean(penguins$flipper_length_mm, na.rm = TRUE)` millimeters. 
+
+Make a scatterplot of flipper_length_mm vs. bill_ length_mm: 
+```{r scatterplot}
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, col = species)) + geom_point()
+ggsave("scatterplot.pdf")
+```
+
+# Problem 2
+
+```{r}
+df = tibble(
+  vec_numeric = rnorm(10), 
+  vec_logical = c(vec_numeric > 0), 
+  vec_char = c("This", "is", "a", "character", "vector", "of", "the", "length", "of", "10"), 
+  vec_factor = factor(c("1st", "1st", "1st", "1st", "2nd", "2nd", "2nd", "3rd", "3rd", "3rd"))
+)
+```
+
+The mean of each variable in the dataframe is `r mean(df$vec_numeric)`, `r mean(df$vec_logical)`, `r mean(df$vec_char)`, and `r mean(df$vec_factor)`, respectively. The mean values of numeric and logical variables can be obtained while that of character and factor variables cannot. (*The mean values can also be obtained using the pull function in the tidyverse library.)
+
+
