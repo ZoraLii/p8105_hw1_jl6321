@@ -4,6 +4,7 @@ output: github_document
 ---
 
 ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
@@ -12,7 +13,7 @@ library(tidyverse)
 ```{r}
 data("penguins", package = "palmerpenguins")
 ```
-The variables in the penguins dataset include `r names(penguins)`. There are `r ncol(penguins)` columns and `r nrow(penguins)` rows in total. The mean flipper length is computed to be `r mean(penguins$flipper_length_mm, na.rm = TRUE)` millimeters. 
+The variables in the penguins dataset include `r names(penguins)`. Some important variables are species, flipper_length_mm, and bill_length_mm. The mean of bill_length_mm is `r mean(penguins$bill_length_mm, na.rm = TRUE)`mm. There are `r ncol(penguins)` columns and `r nrow(penguins)` rows in total. The mean flipper length is computed to be `r mean(penguins$flipper_length_mm, na.rm = TRUE)`mm. 
 
 Make a scatterplot of flipper_length_mm vs. bill_ length_mm: 
 ```{r scatterplot}
