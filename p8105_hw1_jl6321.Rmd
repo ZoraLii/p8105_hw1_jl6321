@@ -27,10 +27,16 @@ df = tibble(
   vec_numeric = rnorm(10), 
   vec_logical = c(vec_numeric > 0), 
   vec_char = c("This", "is", "a", "character", "vector", "of", "the", "length", "of", "10"), 
-  vec_factor = factor(c("1st", "1st", "1st", "1st", "2nd", "2nd", "2nd", "3rd", "3rd", "3rd"))
+  vec_factor = factor(c("1", "1", "1", "1", "2", "2", "2", "3", "3", "3"))
 )
 ```
 
-The mean of each variable in the dataframe is `r mean(df$vec_numeric)`, `r mean(df$vec_logical)`, `r mean(df$vec_char)`, and `r mean(df$vec_factor)`, respectively. The mean values of numeric and logical variables can be obtained while that of character and factor variables cannot. (*The mean values can also be obtained using the pull function in the tidyverse library.)
+The mean of each variable in the dataframe is `r mean(pull(df, vec_numeric))`, `r mean(pull(df, vec_logical))`, `r mean(pull(df, vec_char))`, and `r mean(pull(df, vec_factor))`, respectively. The mean values of numeric and logical variables can be obtained while that of character and factor variables cannot. 
 
-
+Apply as.numeric function to logical, character, and factor variables
+```{r, eval=FALSE}
+as.numeric(TRUE)
+as.numeric("char")
+as.numeric(factor("factors", "hi"))
+```
+The logical variable can be converted to number with as.numeric function while character and factor variables cannot. This helps to explain what happens when trying to take the mean. Logical variables include TRUE and FALSE, which corresponds to 1 and 0 in numbers, but the example character and factor variables listed in the code chunk above don't have numbers they can get converted to. For instance, if the character variables are ("1", "2") or the factor variables are "factor("1", "2"), they can also be converted to numbers using as.numeric and as.character functions (unless the factor levels need to be returned). 
